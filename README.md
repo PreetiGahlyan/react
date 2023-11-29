@@ -25,7 +25,7 @@
 - Header
   - logo
   - nav items
-- Body
+- Main
   - search bar
   - restaurant container
   -      restaurantcard
@@ -35,3 +35,13 @@
   - copyright
   - links
   - contact info
+
+#Type of import/export
+
+- Default Export/import
+  - export default component
+  - import component from "path"
+- Named import/export
+  - export const component
+  - import {component} from "path"
+    When we have to export multiple objects from one file, use named export otherwise use default export

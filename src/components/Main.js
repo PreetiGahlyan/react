@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard"
+import restaurantList from "../utils/mockData"
 
-const Main = ({ restaurantList }) => {
+const Main = () => {
   return (
     <div className="main">
       <div className="search">Search</div>
