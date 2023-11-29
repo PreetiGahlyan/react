@@ -19,3 +19,19 @@
 - Error handling
 - Tree Shaking
 - Different Dev and prod builds
+
+#Food Ordering App
+
+- Header
+  - logo
+  - nav items
+- Body
+  - search bar
+  - restaurant container
+  -      restaurantcard
+  -        - img
+  -        --name of res, star rating, cusine, delivery time
+- Footer
+  - copyright
+  - links
+  - contact info

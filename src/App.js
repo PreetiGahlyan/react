@@ -1,21 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-
-/**
- * Header
- *   logo
- *   nav items
- * Body
- *   search bar
- *   restaurant container
- *      restaurantcard
- *        - img
- *        --name of res, star rating, cusine, delivery time
- * Footer
- *  copyright
- *  links
- *  contact info
- */
+import Header from "./components/Header"
+import Main from "./components/Main"
 
 const restaurantList = [
   {
@@ -840,74 +826,11 @@ const restaurantList = [
   },
 ]
 
-const Header = () => {
-  return (
-    <div className="header">
-      <div className="logo-container">
-        <img
-          className="logo"
-          src="https://i.pinimg.com/736x/9a/fa/a4/9afaa4a58b2c5e73cdbd7d66c0b2c220.jpg"
-        />
-      </div>
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  )
-}
-
-const Body = () => {
-  return (
-    <div className="main">
-      <div className="search">Search</div>
-      <div className="res-container">
-        {restaurantList.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
-        ))}
-      </div>
-    </div>
-  )
-}
-
-const RestaurantCard = ({ resData: { info } }) => {
-  const {
-    name,
-    cloudinaryImageId,
-    cuisines,
-    avgRating,
-    costForTwo,
-    sla: { deliveryTime },
-  } = info
-
-  return (
-    <div className="res-card">
-      <img
-        className="res-logo"
-        alt="res-logo"
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          cloudinaryImageId
-        }
-      ></img>
-      <h3>{name}</h3>
-      <h4>{cuisines.join(",")}</h4>
-      <h4>{avgRating} stars</h4>
-      <h4>{costForTwo}</h4>
-      <h4>{deliveryTime} mins</h4>
-    </div>
-  )
-}
-
 const AppLayout = () => {
   return (
     <div className="app">
       <Header />
-      <Body />
+      <Main restaurantList={restaurantList} />
     </div>
   )
 }
