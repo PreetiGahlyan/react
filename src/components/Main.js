@@ -1,12 +1,63 @@
 import RestaurantCard from "./RestaurantCard"
-import restaurantList from "../utils/mockData"
+import { useEffect, useState } from "react"
+import Shimmer from "./Shimmer"
+import { SWIGGY_API_URL } from "../utils/constants"
 
 const Main = () => {
-  return (
+  const [restaurantList, setRestaurantList] = useState([])
+  const [filteredList, setFilteredList] = useState([])
+  const [searchText, setSearchText] = useState("")
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  async function fetchData() {
+    const response = await fetch(SWIGGY_API_URL)
+    const apiData = await response.json()
+    const restaurants =
+      apiData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    setRestaurantList(restaurants)
+    setFilteredList(restaurants)
+  }
+
+  return restaurantList.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="main">
-      <div className="search">Search</div>
+      <div className="btn-group">
+        <div className="search">
+          <input
+            type="text"
+            className="search-text"
+            placeholder="search"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          ></input>
+          <button
+            onClick={() => {
+              setFilteredList(
+                restaurantList.filter((a) =>
+                  a.info?.name.toLowerCase().includes(searchText.toLowerCase())
+                )
+              )
+            }}
+          >
+            Search
+          </button>
+        </div>
+        <button
+          className="filter-btn"
+          onClick={() => {
+            setFilteredList(restaurantList.filter((a) => a.info?.avgRating > 4))
+          }}
+        >
+          Top Rated Restaurants
+        </button>
+      </div>
       <div className="res-container">
-        {restaurantList.map((restaurant) => (
+        {filteredList.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>

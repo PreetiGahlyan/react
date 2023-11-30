@@ -45,3 +45,9 @@
   - export const component
   - import {component} from "path"
     When we have to export multiple objects from one file, use named export otherwise use default export
+
+#React Hooks
+
+- (Normal js util functions)
+- useState - state variable in react
+- useEffect - it is used to create side effects
