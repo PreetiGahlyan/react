@@ -51,3 +51,5 @@
 - (Normal js util functions)
 - useState - state variable in react
 - useEffect - it is used to create side effects
+- useParams - it is used to read the query params from url
+- useRouteError - it provides error details occurred during routing
