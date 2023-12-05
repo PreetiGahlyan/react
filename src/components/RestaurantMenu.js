@@ -6,7 +6,6 @@ import { MENU_ITEM_URL } from "../utils/constants"
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null)
   const { resId } = useParams()
-  console.log(resId)
 
   useEffect(() => {
     fetchMenu()

@@ -1,7 +1,7 @@
 const About = () => {
   return (
-    <div>
-      <h2>This is a sample food ordering app</h2>
+    <div className="about-us">
+      <h2>This is a food ordering app</h2>
     </div>
   )
 }

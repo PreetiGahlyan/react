@@ -82,6 +82,12 @@ h4 {
   cursor: pointer;
 }
 
+.about-us,
+.contact-us,
+.menu {
+  text-align: center;
+}
+
 .menu-group {
   color: rgb(65, 146, 65);
 }
@@ -89,7 +95,19 @@ h4 {
 .menu-item {
   column-count: 2;
   column-gap: 0.5rem;
-  margin-left: 2rem;
+  margin: 0 auto;
   border: 1px solid rgba(131, 129, 129, 20%);
-  width: 30vw;
+  width: 50vw;
+}
+
+.user-card {
+  margin: 0 auto;
+  width: 300px;
+  height: auto;
+  padding: 1rem;
+  border: 1px solid black;
+}
+
+.user-card img {
+  width: inherit;
 }
