@@ -8,14 +8,13 @@ const RestaurantMenu = () => {
   const { resId } = useParams()
 
   useEffect(() => {
+    const fetchMenu = async () => {
+      const response = await fetch(MENU_ITEM_URL + resId)
+      const json = await response.json()
+      setResInfo(json.data)
+    }
     fetchMenu()
-  }, [])
-
-  const fetchMenu = async () => {
-    const response = await fetch(MENU_ITEM_URL + resId)
-    const json = await response.json()
-    setResInfo(json.data)
-  }
+  }, [resId])
 
   if (resInfo === null) return <Shimmer />
 

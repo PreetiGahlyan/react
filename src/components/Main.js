@@ -10,18 +10,17 @@ const Main = () => {
   const [searchText, setSearchText] = useState("")
 
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(SWIGGY_API_URL)
+      const apiData = await response.json()
+      const restaurants =
+        apiData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      setRestaurantList(restaurants)
+      setFilteredList(restaurants)
+    }
     fetchData()
-  }, [])
-
-  async function fetchData() {
-    const response = await fetch(SWIGGY_API_URL)
-    const apiData = await response.json()
-    const restaurants =
-      apiData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    setRestaurantList(restaurants)
-    setFilteredList(restaurants)
-  }
+  }, [SWIGGY_API_URL])
 
   return restaurantList.length === 0 ? (
     <Shimmer />
