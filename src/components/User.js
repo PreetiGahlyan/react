@@ -13,12 +13,15 @@ const User = () => {
   }, [])
 
   const { name, twitter_username, avatar_url } = userInfo
+
   return (
-    <div className="user-card">
-      <img src={avatar_url}></img>
-      <h2>Name: {name}</h2>
-      <h4>Twitter: @{twitter_username}</h4>
-    </div>
+    { userInfo } && (
+      <div className="user-card">
+        <img src={avatar_url}></img>
+        <h2>Name: {name}</h2>
+        <h4>Twitter: @{twitter_username}</h4>
+      </div>
+    )
   )
 }
 
