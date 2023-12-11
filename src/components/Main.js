@@ -3,14 +3,16 @@ import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer"
 import { SWIGGY_API_URL } from "../utils/constants"
 import { Link } from "react-router-dom"
+import useOnlineStatus from "../utils/useOnlineStatus"
 
 const Main = () => {
   const [restaurantList, setRestaurantList] = useState([])
   const [filteredList, setFilteredList] = useState([])
   const [searchText, setSearchText] = useState("")
+  const onlineStatus = useOnlineStatus()
 
   useEffect(() => {
-    const fetchData = async () => {
+    ;(async () => {
       const response = await fetch(SWIGGY_API_URL)
       const apiData = await response.json()
       const restaurants =
@@ -18,9 +20,15 @@ const Main = () => {
           ?.restaurants
       setRestaurantList(restaurants)
       setFilteredList(restaurants)
-    }
-    fetchData()
+    })()
   }, [SWIGGY_API_URL])
+
+  if (onlineStatus === false)
+    return (
+      <h2>
+        Looks like you are offline!!! Please check your network connection.
+      </h2>
+    )
 
   return restaurantList.length === 0 ? (
     <Shimmer />
