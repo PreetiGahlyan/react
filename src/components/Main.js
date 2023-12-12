@@ -34,16 +34,17 @@ const Main = () => {
     <Shimmer />
   ) : (
     <div className="main">
-      <div className="btn-group">
-        <div className="search">
+      <div className="filter flex">
+        <div className="search my-4 p-4">
           <input
             type="text"
-            className="search-text"
+            className="border border-solid border-black rounded-md pl-2"
             placeholder="search"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           ></input>
           <button
+            className="px-4 bg-blue-100 ml-3 rounded-lg"
             onClick={() => {
               setFilteredList(
                 restaurantList.filter((a) =>
@@ -55,16 +56,20 @@ const Main = () => {
             Search
           </button>
         </div>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            setFilteredList(restaurantList.filter((a) => a.info?.avgRating > 4))
-          }}
-        >
-          Top Rated Restaurants
-        </button>
+        <div className="my-4 py-4">
+          <button
+            className="filter-btn px-2 bg-blue-100 rounded-lg"
+            onClick={() => {
+              setFilteredList(
+                restaurantList.filter((a) => a.info?.avgRating > 4)
+              )
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="res-container flex flex-wrap">
         {filteredList.map((restaurant) => (
           <Link
             key={restaurant.info.id}
