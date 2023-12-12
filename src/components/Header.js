@@ -30,7 +30,7 @@ const Header = () => {
           </li>
           <li className="px-2 ">Cart</li>
           <button
-            className="px-2"
+            className="px-2 bg-slate-400 rounded-md shadow-md"
             onClick={() => {
               btnLabel === intialValue
                 ? setBtnLabel("LogOut")

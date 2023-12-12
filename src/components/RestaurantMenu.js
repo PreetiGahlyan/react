@@ -15,16 +15,17 @@ const RestaurantMenu = () => {
   const { name, cuisines } = resInfo?.cards[0]?.card?.card?.info
 
   return (
-    <div className="menu">
-      <h2>{name}</h2>
-      <h3>{cuisines.join(" , ")}</h3>
-      <p className="menu-group">Recommended Menu Items</p>
+    <div className="menu border-solid border-blue-200 border m-4 p-2 text-center">
+      <h2 className="font-bold text-2xl">{name}</h2>
+      <h3 className="">{cuisines.join(" , ")}</h3>
+      <p className="menu-group text-blue-500">Recommended Menu Items</p>
       {recommendedMenuItems?.map((item) => (
-        <div className="menu-item" key={item.card.info.id}>
-          <h4>{item.card.info.name}</h4>
-          <h4>
-            Rs. {(item.card.info?.price || item.card.info?.defaultPrice) / 100}
-            for two
+        <div className="menu-item flex justify-around" key={item.card.info.id}>
+          <h4 className="w-1/4 text-left">{item.card.info.name}</h4>
+          <h4 className="w-1/4 text-left">
+            Rs.
+            {(item.card.info?.price || item.card.info?.defaultPrice) / 100} for
+            two
           </h4>
         </div>
       ))}

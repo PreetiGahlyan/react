@@ -1,6 +1,8 @@
 const Grocery = () => {
   return (
-    <div>This is a sample big component which will be loaded on demand</div>
+    <div className="text-center mt-8">
+      This is a sample big component which will be loaded on demand
+    </div>
   )
 }
 
