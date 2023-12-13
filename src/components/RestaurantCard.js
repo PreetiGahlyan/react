@@ -26,4 +26,17 @@ const RestaurantCard = ({ resData: { info } }) => {
   )
 }
 
+export const withTopRatingLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute text-white bg-green-700 m-0 p-1">
+          Top rated restaurant
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    )
+  }
+}
+
 export default RestaurantCard
