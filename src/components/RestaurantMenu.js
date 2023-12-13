@@ -1,6 +1,7 @@
 import Shimmer from "./Shimmer"
 import { useParams } from "react-router-dom"
 import useRestaurantMenu from "../utils/useRestaurantMenu"
+import RestaurantCategory from "./RestaurantCategory"
 
 const RestaurantMenu = () => {
   const { resId } = useParams()
@@ -8,26 +9,26 @@ const RestaurantMenu = () => {
 
   if (resInfo === null) return <Shimmer />
 
-  const recommendedMenuItems =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card
-      ?.itemCards
-
-  const { name, cuisines } = resInfo?.cards[0]?.card?.card?.info
+  const categories =
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    )
+  const { name, cuisines, costForTwoMessage } =
+    resInfo?.cards[0]?.card?.card?.info
 
   return (
-    <div className="menu border-solid border-blue-200 border m-4 p-2 text-center">
-      <h2 className="font-bold text-2xl">{name}</h2>
-      <h3 className="">{cuisines.join(" , ")}</h3>
-      <p className="menu-group text-blue-500">Recommended Menu Items</p>
-      {recommendedMenuItems?.map((item) => (
-        <div className="menu-item flex justify-around" key={item.card.info.id}>
-          <h4 className="w-1/4 text-left">{item.card.info.name}</h4>
-          <h4 className="w-1/4 text-left">
-            Rs.
-            {(item.card.info?.price || item.card.info?.defaultPrice) / 100} for
-            two
-          </h4>
-        </div>
+    <div className="menu text-center">
+      <h1 className="font-bold text-xl my-4">{name}</h1>
+      <p className="font-bold text-lg">
+        {cuisines.join(" , ")} - {costForTwoMessage}
+      </p>
+      {categories.map((category) => (
+        <RestaurantCategory
+          key={category?.card?.card?.title}
+          data={category?.card?.card}
+        />
       ))}
     </div>
   )
