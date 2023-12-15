@@ -1,18 +1,10 @@
-import { useState } from "react"
 import ItemList from "./ItemList"
 
-const RestaurantCategory = ({ data }) => {
-  const [showItems, setShowItems] = useState(false)
-  const handleClick = () => {
-    setShowItems(!showItems)
-  }
+const RestaurantCategory = ({ data, showItems, onShow }) => {
   return (
     <div>
       <div className="w-8/12 mx-auto my-4 bg-gray-100 shadow-lg p-4 rounded-sm">
-        <div
-          className="flex justify-between cursor-pointer"
-          onClick={handleClick}
-        >
+        <div className="flex justify-between cursor-pointer" onClick={onShow}>
           <span className="font-bold text-md">
             {data.title} ({data.itemCards?.length})
           </span>

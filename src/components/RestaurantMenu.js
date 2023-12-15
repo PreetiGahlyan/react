@@ -2,15 +2,17 @@ import Shimmer from "./Shimmer"
 import { useParams } from "react-router-dom"
 import useRestaurantMenu from "../utils/useRestaurantMenu"
 import RestaurantCategory from "./RestaurantCategory"
+import { useState } from "react"
 
 const RestaurantMenu = () => {
   const { resId } = useParams()
   const resInfo = useRestaurantMenu(resId)
+  const [activeIndex, setActiveIndex] = useState(0)
 
   if (resInfo === null) return <Shimmer />
 
   const categories =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
       (c) =>
         c.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
@@ -24,10 +26,12 @@ const RestaurantMenu = () => {
       <p className="font-bold text-lg">
         {cuisines.join(" , ")} - {costForTwoMessage}
       </p>
-      {categories.map((category) => (
+      {categories.map((category, index) => (
         <RestaurantCategory
           key={category?.card?.card?.title}
           data={category?.card?.card}
+          showItems={index === activeIndex && true}
+          onShow={() => setActiveIndex(index)}
         />
       ))}
     </div>
