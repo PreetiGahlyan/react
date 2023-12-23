@@ -1,7 +1,14 @@
-import { SWIGGY_CDN_URL } from "../utils/constants"
+import { useDispatch } from "react-redux";
+import { SWIGGY_CDN_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 
 const ItemList = ({ items }) => {
-  console.log(items)
+  const dispatch = useDispatch();
+  const hangleAddItem = (item) => {
+    //dispatch an action
+    dispatch(addItem(item));
+  };
+
   return (
     <div>
       {items.map((item) => (
@@ -23,7 +30,10 @@ const ItemList = ({ items }) => {
           </div>
           <div className="w-3/12 ">
             <div className="absolute">
-              <button className="p-2 mb-2 bg-black text-white shadow-lg">
+              <button
+                className="p-2 mb-2 bg-black text-white shadow-lg"
+                onClick={() => hangleAddItem(item)}
+              >
                 Add+
               </button>
             </div>
@@ -35,6 +45,6 @@ const ItemList = ({ items }) => {
         </div>
       ))}
     </div>
-  )
-}
-export default ItemList
+  );
+};
+export default ItemList;

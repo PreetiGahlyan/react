@@ -53,3 +53,14 @@
 - useEffect - it is used to create side effects
 - useParams - it is used to read the query params from url
 - useRouteError - it provides error details occurred during routing
+
+#Redux toolkit(RTK)
+- RTK is intented to be the standard way to write redux logic
+- redux works in the data layer of the application
+- it is useful for big enterprise level applications
+- install @reduxjs/toolkit and react-redux
+- Build store
+- connect store to our app
+- create a cartSlice
+- dispatch action
+- Selector
