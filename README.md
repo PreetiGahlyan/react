@@ -55,6 +55,7 @@
 - useRouteError - it provides error details occurred during routing
 
 #Redux toolkit(RTK)
+
 - RTK is intented to be the standard way to write redux logic
 - redux works in the data layer of the application
 - it is useful for big enterprise level applications
@@ -64,3 +65,17 @@
 - create a cartSlice
 - dispatch action
 - Selector
+
+# Types of testing(developer)
+
+- Unit Testing
+- Integration Testing
+- End to End Testing - e2e testing
+
+# Setting up testing in our app
+
+- install react testing library
+- install jest
+- install babel dependencies for jest
+- configure babel (https://jestjs.io/docs/getting-started#using-babel)
+- configure parcel config file to disable default babel transpilation ( https://parceljs.org/languages/javascript/#usage-with-other-tools )
