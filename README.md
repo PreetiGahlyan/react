@@ -79,3 +79,7 @@
 - install babel dependencies for jest
 - configure babel (https://jestjs.io/docs/getting-started#using-babel)
 - configure parcel config file to disable default babel transpilation ( https://parceljs.org/languages/javascript/#usage-with-other-tools )
+- install jsdom library
+- install @babel/preset-react library to test jsx syntax with jest
+- Add @babel/preset-react in babel config
+- install @testing-library/jest-dom to enable toBeInTheDocument function.
