@@ -1,17 +1,16 @@
-import { useContext, useState } from "react";
-import { LOGO_URL } from "../utils/constants";
-import { Link } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStatus";
-import UserContext from "../context/UserContext";
-import { useSelector } from "react-redux";
+import { useContext, useState } from "react"
+import { LOGO_URL } from "../utils/constants"
+import { Link } from "react-router-dom"
+import useOnlineStatus from "../utils/useOnlineStatus"
+import UserContext from "../context/UserContext"
+import { useSelector } from "react-redux"
 
 const Header = () => {
-  const intialValue = "Login";
-  const [btnLabel, setBtnLabel] = useState(intialValue);
-  const onlineStatus = useOnlineStatus();
-  const { loggedInUser } = useContext(UserContext);
+  const [btnLabel, setBtnLabel] = useState("Login")
+  const onlineStatus = useOnlineStatus()
+  const { loggedInUser } = useContext(UserContext)
   //subscribing to the store using a selector
-  const cartItems = useSelector((store) => store.cart.items);
+  const cartItems = useSelector((store) => store.cart.items)
 
   return (
     <div className="flex justify-between bg-green-100">
@@ -39,9 +38,9 @@ const Header = () => {
           <button
             className="px-2 bg-green-400 rounded-md shadow-md"
             onClick={() => {
-              btnLabel === intialValue
+              btnLabel === "Login"
                 ? setBtnLabel("LogOut")
-                : setBtnLabel(intialValue);
+                : setBtnLabel("Login")
             }}
           >
             {btnLabel}
@@ -50,7 +49,7 @@ const Header = () => {
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
