@@ -17,7 +17,7 @@ const Main = () => {
       const response = await fetch(SWIGGY_API_URL)
       const apiData = await response.json()
       const restaurants =
-        apiData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+        apiData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       setRestaurantList(restaurants)
       setFilteredList(restaurants)
@@ -71,7 +71,7 @@ const Main = () => {
         </div>
       </div>
       <div className="res-container flex flex-wrap">
-        {filteredList.map((restaurant) => (
+        {filteredList?.map((restaurant) => (
           <Link
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
