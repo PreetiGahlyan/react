@@ -1,6 +1,6 @@
 import { SWIGGY_CDN_URL } from "../utils/constants"
 
-const RestaurantCard = ({ resData: { info } }) => {
+const RestaurantCard = ({ resData }) => {
   const {
     name,
     cloudinaryImageId,
@@ -8,7 +8,7 @@ const RestaurantCard = ({ resData: { info } }) => {
     avgRating,
     costForTwo,
     sla: { deliveryTime },
-  } = info
+  } = resData?.info
 
   return (
     <div className="m-4 p-4 w-[250px] max-h-full bg-gray-100 rounded-lg">
