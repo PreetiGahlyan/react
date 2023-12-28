@@ -22,7 +22,7 @@ const Main = () => {
       setRestaurantList(restaurants)
       setFilteredList(restaurants)
     })()
-  }, [SWIGGY_API_URL])
+  }, [])
 
   if (onlineStatus === false)
     return (
@@ -39,6 +39,7 @@ const Main = () => {
         <div className="search my-4 p-4">
           <input
             type="text"
+            data-testid="searchInput"
             className="border border-solid border-black rounded-md pl-2"
             placeholder="search"
             value={searchText}
@@ -74,6 +75,7 @@ const Main = () => {
         {filteredList?.map((restaurant) => (
           <Link
             key={restaurant.info.id}
+            data-testid="resCard"
             to={"/restaurants/" + restaurant.info.id}
           >
             {restaurant.info?.avgRating > 4 ? (

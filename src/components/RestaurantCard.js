@@ -18,7 +18,9 @@ const RestaurantCard = ({ resData }) => {
         src={SWIGGY_CDN_URL + cloudinaryImageId}
       ></img>
       <h3 className="font-bold py-1">{name}</h3>
-      <h4>{cuisines.join(",")}</h4>
+      <h4 className="max-w-fit overflow-hidden hover:overflow-visible">
+        {cuisines.join(",")}
+      </h4>
       <h4>{avgRating} stars</h4>
       <h4>{costForTwo}</h4>
       <h4>{deliveryTime} mins</h4>
