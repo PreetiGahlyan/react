@@ -26,7 +26,7 @@ const Main = () => {
 
   if (onlineStatus === false)
     return (
-      <h2>
+      <h2 className="text-center m-4">
         Looks like you are offline!!! Please check your network connection.
       </h2>
     )

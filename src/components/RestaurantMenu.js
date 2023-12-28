@@ -30,8 +30,10 @@ const RestaurantMenu = () => {
         <RestaurantCategory
           key={category?.card?.card?.title}
           data={category?.card?.card}
-          showItems={index === activeIndex && true}
-          onShow={() => setActiveIndex(index)}
+          showItems={index === activeIndex}
+          onShow={() => {
+            setActiveIndex(index)
+          }}
         />
       ))}
     </div>

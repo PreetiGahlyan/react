@@ -39,7 +39,7 @@ const ItemList = ({ items }) => {
               </button>
             </div>
             <img
-              className="w-full"
+              className="w-full h-[150px]"
               src={SWIGGY_CDN_URL + item.card.info?.imageId}
             ></img>
           </div>
