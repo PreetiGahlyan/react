@@ -1,18 +1,19 @@
-import { useDispatch } from "react-redux";
-import { SWIGGY_CDN_URL } from "../utils/constants";
-import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux"
+import { SWIGGY_CDN_URL } from "../utils/constants"
+import { addItem } from "../utils/cartSlice"
 
 const ItemList = ({ items }) => {
-  const dispatch = useDispatch();
-  const hangleAddItem = (item) => {
+  const dispatch = useDispatch()
+  const handleAddItem = (item) => {
     //dispatch an action
-    dispatch(addItem(item));
-  };
+    dispatch(addItem(item))
+  }
 
   return (
     <div>
       {items.map((item) => (
         <div
+          data-testid="foodItems"
           key={item.card.info.id}
           className="m-2 p-2 border-b-2 text-left flex justify-between"
         >
@@ -32,7 +33,7 @@ const ItemList = ({ items }) => {
             <div className="absolute">
               <button
                 className="p-2 mb-2 bg-black text-white shadow-lg"
-                onClick={() => hangleAddItem(item)}
+                onClick={() => handleAddItem(item)}
               >
                 Add+
               </button>
@@ -45,6 +46,6 @@ const ItemList = ({ items }) => {
         </div>
       ))}
     </div>
-  );
-};
-export default ItemList;
+  )
+}
+export default ItemList
