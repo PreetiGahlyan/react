@@ -15,10 +15,10 @@ const Header = () => {
   return (
     <div className="flex justify-between bg-green-100">
       <div>
-        <img className="w-24" src={LOGO_URL} />
+        <img className="absolute w-24" src={LOGO_URL} />
       </div>
       <div>
-        <ul className="flex p-4 m-4 font-normal">
+        <ul className="flex flex-wrap p-4 m-4 font-normal">
           <li className="px-2">Online Status: {onlineStatus ? "✅" : "🔴"}</li>
           <li className="px-2 ">
             <Link to="/">Home</Link>
