@@ -1,4 +1,4 @@
-# This repository contains concepts from basic to advanced for learning react
+# This file contains details about the libraries and features used in this project
 
 #Parcel
 
@@ -31,10 +31,6 @@
   -      restaurantcard
   -        - img
   -        --name of res, star rating, cusine, delivery time
-- Footer
-  - copyright
-  - links
-  - contact info
 
 #Type of import/export
 
