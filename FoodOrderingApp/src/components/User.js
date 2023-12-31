@@ -4,12 +4,11 @@ const User = () => {
   const [userInfo, setUserInfo] = useState({})
 
   useEffect(() => {
-    fetchData = async () => {
+    ;(async () => {
       const data = await fetch("https://api.github.com/users/PreetiGahlyan")
       const json = await data.json()
       setUserInfo(json)
-    }
-    fetchData()
+    })()
   }, [])
 
   const { name, twitter_username, avatar_url } = userInfo
