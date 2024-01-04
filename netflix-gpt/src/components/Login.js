@@ -1,28 +1,38 @@
 import React, { useRef, useState } from "react"
 import Header from "./Header"
 import { checkValidateData } from "../utils/validate"
+import { loginUser, signUpUser } from "../services/userService"
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true)
   const nameRef = useRef(null)
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
-  const [error, setError] = useState("")
+  const [error, setError] = useState(null)
 
   const toggleIsSignInForm = () => {
     setIsSignInForm(!isSignInForm)
   }
 
   const handleSubmit = () => {
-    if (error !== "") setError("")
-
+    const emailAddress = emailRef.current.value
+    const password = passwordRef.current.value
+    const name = nameRef?.current?.value
     //validate form data
     const message = checkValidateData(
-      emailRef.current.value,
-      passwordRef.current.value,
-      isSignInForm ? "Preeti Tandon" : nameRef?.current?.value
+      emailAddress,
+      password,
+      isSignInForm ? "Preeti Tandon" : name
     )
     setError(message)
+
+    if (message) return
+
+    //sign in/sign up logic
+    const response = isSignInForm
+      ? loginUser(emailAddress, password)
+      : signUpUser(emailAddress, password)
+    if (response) setError(response)
   }
 
   return (
