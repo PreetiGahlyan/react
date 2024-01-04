@@ -1,22 +1,38 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import Header from "./Header"
+import { checkValidateData } from "../utils/validate"
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true)
+  const nameRef = useRef(null)
+  const emailRef = useRef(null)
+  const passwordRef = useRef(null)
+  const [error, setError] = useState("")
 
   const toggleIsSignInForm = () => {
     setIsSignInForm(!isSignInForm)
   }
 
-  const handleButtonClick = () => {
+  const handleSubmit = () => {
+    if (error !== "") setError("")
+
     //validate form data
+    const message = checkValidateData(
+      emailRef.current.value,
+      passwordRef.current.value,
+      isSignInForm ? "Preeti Tandon" : nameRef?.current?.value
+    )
+    setError(message)
   }
 
   return (
     <div className="bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/c31c3123-3df7-4359-8b8c-475bd2d9925d/3aac2646-dd73-480d-b9b8-fbf55b24aff8/DE-en-20231225-popsignuptwoweeks-perspective_alpha_website_small.jpg')] bg-cover bg-repeat h-screen">
       <Header />
-      <div className="flex justify-center">
-        <form className="bg-black p-12 w-4/12 text-white rounded-md">
+      <div className="flex items-center justify-center h-screen">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="bg-black p-12 w-4/12 text-white rounded-md"
+        >
           <h1 className="font-bold text-3xl mb-4">
             {isSignInForm ? "Sign In" : "Sign Up"}
           </h1>
@@ -25,22 +41,26 @@ const Login = () => {
             <input
               type="text"
               placeholder="Full Name"
+              ref={nameRef}
               className="p-4 mt-4 w-full bg-gray-700 rounded-md"
             />
           )}
           <input
             type="text"
+            ref={emailRef}
             placeholder="Email Address"
             className="p-4 mt-4 w-full bg-gray-700 rounded-md"
           />
           <input
             type="password"
             placeholder="Password"
+            ref={passwordRef}
             className="p-4 mt-4 w-full bg-gray-700 rounded-md"
           />
+          <p className="text-red-500 text-lg py-2">{error}</p>
           <button
             className="p-4 w-full my-6 bg-red-500 rounded-md"
-            onClick={handleButtonClick}
+            onClick={handleSubmit}
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
           </button>
