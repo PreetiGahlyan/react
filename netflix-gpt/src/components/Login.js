@@ -1,13 +1,23 @@
 import React, { useRef, useState } from "react"
 import Header from "./Header"
 import { checkValidateData } from "../utils/validate"
-import { loginUser, signUpUser } from "../services/userService"
+import { useNavigate } from "react-router-dom"
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth"
+import { auth } from "../utils/firebase"
+import { useDispatch } from "react-redux"
+import { addUser } from "../utils/userSlice"
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true)
   const nameRef = useRef(null)
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [error, setError] = useState(null)
 
   const toggleIsSignInForm = () => {
@@ -22,17 +32,50 @@ const Login = () => {
     const message = checkValidateData(
       emailAddress,
       password,
-      isSignInForm ? "Preeti Tandon" : name
+      isSignInForm ? "Preeti" : name
     )
     setError(message)
 
     if (message) return
 
     //sign in/sign up logic
-    const response = isSignInForm
-      ? loginUser(emailAddress, password)
-      : signUpUser(emailAddress, password)
-    if (response) setError(response)
+    isSignInForm
+      ? signInWithEmailAndPassword(auth, emailAddress, password)
+          .then((userCredential) => {
+            // Signed up
+            const user = userCredential.user
+            navigate("/browse")
+          })
+          .catch((error) => {
+            const errorCode = error.code
+            const errorMessage = error.message
+            setError(`${errorCode} - ${errorMessage}`)
+          })
+      : createUserWithEmailAndPassword(auth, emailAddress, password)
+          .then((userCredential) => {
+            // Signed up
+            const user = userCredential.user
+            updateProfile(user, {
+              displayName: name,
+              photoURL: "https://avatars.githubusercontent.com/u/26164863?v=4",
+            }).then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              )
+            })
+            navigate("/browse")
+          })
+          .catch((error) => {
+            const errorCode = error.code
+            const errorMessage = error.message
+            setError(`${errorCode} - ${errorMessage}`)
+          })
   }
 
   return (
