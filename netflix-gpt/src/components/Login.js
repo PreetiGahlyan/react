@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react"
 import Header from "./Header"
 import { checkValidateData } from "../utils/validate"
-import { useNavigate } from "react-router-dom"
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -10,13 +9,13 @@ import {
 import { auth } from "../utils/firebase"
 import { useDispatch } from "react-redux"
 import { addUser } from "../utils/userSlice"
+import { USER_PROFILE_IMAGE } from "../utils/constants"
 
 const Login = () => {
-  const [isSignInForm, setIsSignInForm] = useState(true)
+  const [isSignInForm, setIsSignInForm] = useState(false)
   const nameRef = useRef(null)
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [error, setError] = useState(null)
 
@@ -44,7 +43,6 @@ const Login = () => {
           .then((userCredential) => {
             // Signed up
             const user = userCredential.user
-            navigate("/browse")
           })
           .catch((error) => {
             const errorCode = error.code
@@ -57,7 +55,7 @@ const Login = () => {
             const user = userCredential.user
             updateProfile(user, {
               displayName: name,
-              photoURL: "https://avatars.githubusercontent.com/u/26164863?v=4",
+              photoURL: USER_PROFILE_IMAGE,
             }).then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser
               dispatch(
@@ -69,7 +67,6 @@ const Login = () => {
                 })
               )
             })
-            navigate("/browse")
           })
           .catch((error) => {
             const errorCode = error.code
@@ -79,7 +76,7 @@ const Login = () => {
   }
 
   return (
-    <div className="bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/c31c3123-3df7-4359-8b8c-475bd2d9925d/3aac2646-dd73-480d-b9b8-fbf55b24aff8/DE-en-20231225-popsignuptwoweeks-perspective_alpha_website_small.jpg')] bg-cover bg-repeat h-screen">
+    <div className={`bg-first bg-cover bg-repeat h-screen`}>
       <Header />
       <div className="flex items-center justify-center h-screen">
         <form

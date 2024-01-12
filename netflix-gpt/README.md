@@ -11,6 +11,11 @@
 - setup firebase
 - deploy to firebase
 - create SignUp user Account in firebase
+- add redux store to manage state
+- implement sign out
+- updated profile photo on sign up
+- move static url to constants
+- move background image url to tailwind.config.js
 
 #Features
 -Login/Sign Up - Sign In/Sign up form - redirect to browse page
