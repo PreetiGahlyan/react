@@ -16,6 +16,8 @@
 - updated profile photo on sign up
 - move static url to constants
 - move background image url to tailwind.config.js
+- register for TMDB api and create an api to get access token
+- Get data from TMDB Now Playing Movies List API
 
 #Features
 -Login/Sign Up - Sign In/Sign up form - redirect to browse page
