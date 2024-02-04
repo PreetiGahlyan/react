@@ -46,7 +46,7 @@ const Header = () => {
       })
   }
 
-  const handleGptSearchClick = () => {
+  const toggleGptSearchPage = () => {
     dispatch(toggleGptSearchView())
   }
 
@@ -73,7 +73,7 @@ const Header = () => {
           )}
           <button
             className="p-2 w-auto rounded-lg m-2 h-max bg-purple-500 text-white"
-            onClick={handleGptSearchClick}
+            onClick={toggleGptSearchPage}
           >
             {showGptSearch ? "Home Page" : "GPT Search"}
           </button>
@@ -84,7 +84,7 @@ const Header = () => {
           />
           <button
             onClick={handleSignOut}
-            className="w-auto px-8  rounded-lg cursor-pointer font-bold text-white"
+            className="w-auto px-8 rounded-lg cursor-pointer font-bold text-white"
           >
             Sign Out
           </button>
